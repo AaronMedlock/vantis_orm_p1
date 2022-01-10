@@ -79,7 +79,7 @@ public abstract class TableBuilder {
        		// Check if the table already exists in DB
        		try {    			
        			DatabaseMetaData md = conn.getMetaData();
-    			ResultSet rs = md.getTables(null, null, metaModel.getTableName().toLowerCase(), null);
+    			ResultSet rs = md.getTables(null, schema, metaModel.getTableName().toLowerCase(), null);
     			
     			if(rs.next() && (metaModel.dropTableDesired() == false)){
     				log.info("[SKIPPING] The table, " + metaModel.getTableName().toLowerCase() + ", already exists in the database"

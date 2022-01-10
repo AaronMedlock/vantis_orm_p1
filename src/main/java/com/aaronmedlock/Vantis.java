@@ -28,8 +28,7 @@ public final class Vantis {
 	static {
 		Properties prop = new Properties();
 		String path = new File("src/main/resources/vantis.properties").getAbsolutePath();
-		Boolean tableScannedOnStartup = false;
-		
+		boolean tableScannedOnStartup = false;
 		
 	    try {
 			prop.load(new FileReader(path));
