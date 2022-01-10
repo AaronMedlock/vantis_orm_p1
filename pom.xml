@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.aaronmedlock</groupId>
+	<artifactId>VantisORM</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>VantisORM</name>
+	<description>A Java Object Relational Mapping framework for PostgreSQL.</description>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<sonar.organization>aaronmedlock</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<cache2k-version>2.4.1.Final</cache2k-version>
+	</properties>
+
+	<dependencies>
+	
+		<dependency>
+		  <groupId>org.apache.maven</groupId>
+		  <artifactId>maven-model</artifactId>
+		  <version>3.3.9</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.reflections</groupId>
+		    <artifactId>reflections</artifactId> 
+		    <version>0.9.12</version>
+		</dependency>
+	
+		<!-- JUnit for testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- SLF4J API -->
+		<dependency> 
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+				
+		
+		<!-- Binding Dependency (Bridge) to Log4j -->
+		<dependency> 
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		
+				
+		<!-- Log4j Dependency -->
+		<dependency> 
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		
+		
+		<!-- PostgreSQL JDBC Driver -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.23</version>
+		</dependency>
+
+
+		<!-- Hikari CP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+		
+	</dependencies>
+	
+</project>
