@@ -2,7 +2,7 @@
 <b>Version 1.0 — "Kit"</b>
 
 ## Project Description
-Vantis is a Java Object Relational Mapping framework for PostgreSQL. This framework performs the heavy lifting typically fulfilled by the DAO layer by automatically handling the creation of database tables and rows. It is designed to be flexible in allowing you to automate the creation and update of tables, columns, and rows or to support custom implementations with manual methods.
+Vantis is a Java Object Relational Mapping framework for PostgreSQL that emphasizes ease-of-use for the end developer. Vantis performs the heavy lifting typically fulfilled by the DAO layer by allowing you to execute CRUD methods with a minimal for your annotated classes. It is designed to be flexible in allowing you to automate the creation and update of tables, columns, and rows or to support custom implementations with manual methods.
 
 ## Technologies Used
 * Java 8
@@ -16,8 +16,8 @@ Vantis is a Java Object Relational Mapping framework for PostgreSQL. This framew
 ### Currently Implemented
 - [x] Vantis handles the mapping of Java classes with the flexibility to be done automatically or on-demand as needed by your project.
 - [x] Simply annotate your classes, define your constraints, and allow Vantis to perform the rest.
-- [x] Create table joins in a single annotation
-- [x] Use as little or as much SQL as you want by either passing Vantis your objects to persist, update, or delete in your database or simply pass SQL statements.
+- [x] Create table joins in a single annotation.
+- [x] Use as little or as much SQL as you want by either passing Vantis methods your objects to persist, update, or delete in your database or simply pass SQL statements if Vantis doesn't cover the function you need yet.
 - [x] Easy to use API allows you to eliminate writing your basic CRUD methods.
 - [x] Perform your database queries efficiently with connection pooling.
 
@@ -30,7 +30,7 @@ Vantis is a Java Object Relational Mapping framework for PostgreSQL. This framew
 - [ ] Expanded support for join columns and enhanced logic for creating table joins
 
 ## Getting Started
-Currently the project must be included as a local dependency. However, doing so can be done in three easy steps.
+Currently the project must be included as a local dependency. However, getting up and running is still pretty simple allowing you to focus on the rest of your project.
 
 1. Clone the repository
 ```
@@ -47,7 +47,7 @@ Currently the project must be included as a local dependency. However, doing so 
 	<scope>compile</scope>
 </dependency>
 ```
-3. Finally create and initialize the _vantis.properties_ file in src/main/resources/ directory of your project.
+3. Create and initialize the _vantis.properties_ file in src/main/resources/ directory of your project.
 ```
 db_url=jdbc:postgresql://localhost:5432/postgres
 db_schema=schema
@@ -56,7 +56,27 @@ db_password=password
 max_pool_size=10
 scan_on_startup=true
 ```
-     
+4. Annotate your classes using the @Entity, @Id, @Column, and @JoinColumn annotations.
+```
+@Entity(tableName="accounts")
+public class Account {
+	
+	@Id(columnName="account_id")
+	private int accountId;
+	
+	@Column(columnName="account_balance")
+	private double accountBalance;
+	
+	@JoinColumn(columnName="account_owner", references="users.user_id")
+	private int accountOwner;
+
+	...
+```
+5. Creating a table and adding an object of your class can be as easy as:
+```
+Vantis.createRow(new Account(2.00, 2));
+```
+6. Get to work on the rest of your code, or maybe just take the time to have a coffee break... you probably deserve it!   
 
 ## Usage
 ### Annotating Classes
@@ -116,6 +136,8 @@ scan_on_startup=true
   - <b>Parameter</b> is the object to be deleted from the database.
   - <b>Returns</b> a boolean of whether the row was successfully deleted or not.
 
+
+### API for SQL
 * ```Vantis.executeSqlWithResults(String sqlStatement);```
   - Execute a custom SQL statements and receive the results as a ResultSet object.
   - <b>Paramater</b> is a String query to be executed for the database specified in Vantis.properties.
@@ -124,6 +146,7 @@ scan_on_startup=true
 * ```Vantis.executeSqlNoResults(String sqlStatement);```
   - <b>Paramater</b> is a String query to be executed for the database specified in Vantis.properties.
   - <b>Returns</b> a boolean true if successful, SQLException or false if unsuccessful.
+  
   
 ## License
 This project uses the following license: [GNU Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).<br/>
